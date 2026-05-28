@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monster Mayhem</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <h1>Monster Mayhem - Heart Maze</h1>
+
+    <div class="game-info">
+      <p><strong>Goal:</strong> collect all hearts and get to the exit.</p>
+
+      <p>Moves left: <span id="movesLeft">45</span></p>
+
+      <p>
+        Hearts collected:
+        <span id="heartsCollected">0</span> /
+        <span id="totalHearts">0</span>
+      </p>
+
+      <p id="message">Click beside the monster to move.</p>
+
+      <button id="restartBtn">Restart Game</button>
+    </div>
+
+    <div id="board" class="board"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

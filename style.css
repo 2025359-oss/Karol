@@ -70,12 +70,12 @@ button:hover {
 }
 
 .hex.wall {
-  background-color: #111;
+  background-color: #2e7d32;
   cursor: not-allowed;
 }
 
 .hex.wall:hover {
-  background-color: #111;
+  background-color: hsl(0, 2%, 25%);
 }
 
 .hex.entrance {
@@ -87,13 +87,13 @@ button:hover {
 }
 
 .hex.possible-move {
-  background-color: #2b8bb8;
+  background-color: #64accd;
 }
 
 .hex.player {
-  background-color: #c0392b;
+  background-color: #460700;
 }
 
 .hex.heart {
-  background-color: #73405d;
+  background-color: #d61818;
 }

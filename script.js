@@ -49,7 +49,7 @@ function drawBoard() {
 
       if (maze[r][c] === "W") {
         hex.classList.add("wall");
-        hex.textContent = "🪨";
+        hex.textContent = "⛰";
       }
 
       if (maze[r][c] === "E") {

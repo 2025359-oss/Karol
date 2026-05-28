@@ -7,7 +7,7 @@ const restartBtn = document.getElementById("restartBtn");
 
 const rows = 10;
 const cols = 10;
-const maxMoves = 45;
+const maxMoves = 40;
 
 let playerRow = 0;
 let playerCol = 0;
@@ -16,33 +16,15 @@ let heartsCollected = 0;
 let gameOver = false;
 
 const maze = [
-  ["E", "", "W", "H", "", "", "W", "", "H", ""],
-  ["", "", "W", "", "W", "", "", "", "W", ""],
-  ["W", "", "", "", "W", "", "W", "", "", ""],
-  ["H", "W", "W", "", "", "", "W", "H", "W", ""],
-  ["", "", "", "W", "H", "", "", "", "W", ""],
-  ["", "W", "", "", "W", "W", "", "W", "", ""],
-  ["", "W", "H", "", "", "", "", "W", "", "W"],
-  ["", "", "W", "W", "", "W", "", "", "H", ""],
-  ["W", "", "", "", "", "W", "H", "W", "", ""],
-  ["", "", "W", "H", "", "", "", "", "", "X"]
+  ["E", "", "H", "", "W", ""],
+  ["", "W", "", "", "", ""],
+  ["", "", "W", "H", "", ""],
+  ["H", "", "", "W", "", ""],
+  ["", "", "", "", "H", ""],
+  ["W", "", "", "", "", "X"]
 ];
 
-let totalHearts = countHearts();
-
-function countHearts() {
-  let total = 0;
-
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      if (maze[r][c] === "H") {
-        total++;
-      }
-    }
-  }
-
-  return total;
-}
+let totalHearts = 4;
 
 function drawBoard() {
   board.innerHTML = "";
@@ -59,29 +41,27 @@ function drawBoard() {
       let hex = document.createElement("div");
       hex.className = "hex";
 
-      let cell = maze[r][c];
-
-      if (cell === "W") {
+      if (maze[r][c] === "W") {
         hex.classList.add("wall");
         hex.textContent = "🪨";
       }
 
-      if (cell === "E") {
+      if (maze[r][c] === "E") {
         hex.classList.add("entrance");
         hex.textContent = "IN";
       }
 
-      if (cell === "X") {
+      if (maze[r][c] === "X") {
         hex.classList.add("exit");
         hex.textContent = "OUT";
       }
 
-      if (cell === "H") {
+      if (maze[r][c] === "H") {
         hex.classList.add("heart");
         hex.textContent = "💖";
       }
 
-      if (isNextToPlayer(r, c) && cell !== "W") {
+      if (isNextToPlayer(r, c) && maze[r][c] !== "W") {
         hex.classList.add("possible-move");
       }
 
@@ -104,7 +84,7 @@ function drawBoard() {
 }
 
 function moveMonster(r, c) {
-  if (gameOver === true) {
+  if (gameOver) {
     return;
   }
 
@@ -113,7 +93,7 @@ function moveMonster(r, c) {
     return;
   }
 
-  if (isNextToPlayer(r, c) === false) {
+  if (!isNextToPlayer(r, c)) {
     message.textContent = "You cant move there";
     return;
   }
@@ -130,7 +110,7 @@ function moveMonster(r, c) {
     message.textContent = "Monster moved";
   }
 
-  checkWinOrLose();
+  checkGame();
   drawBoard();
 }
 
@@ -158,10 +138,10 @@ function isNextToPlayer(r, c) {
   }
 
   for (let i = 0; i < moves.length; i++) {
-    let newRow = playerRow + moves[i][0];
-    let newCol = playerCol + moves[i][1];
+    let nextRow = playerRow + moves[i][0];
+    let nextCol = playerCol + moves[i][1];
 
-    if (newRow === r && newCol === c) {
+    if (nextRow === r && nextCol === c) {
       return true;
     }
   }
@@ -169,14 +149,14 @@ function isNextToPlayer(r, c) {
   return false;
 }
 
-function checkWinOrLose() {
-  if (maze[playerRow][playerCol] === "X") {
-    if (heartsCollected === totalHearts) {
-      message.textContent = "You got all hearts and escaped!";
-      gameOver = true;
-    } else {
-      message.textContent = "Get all hearts before leaving";
-    }
+function checkGame() {
+  if (maze[playerRow][playerCol] === "X" && heartsCollected === totalHearts) {
+    message.textContent = "You got all hearts and escaped!";
+    gameOver = true;
+  }
+
+  if (maze[playerRow][playerCol] === "X" && heartsCollected < totalHearts) {
+    message.textContent = "Get all hearts before leaving";
   }
 
   if (movesLeft <= 0 && gameOver === false) {

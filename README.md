@@ -70,3 +70,9 @@ Some parts of the generated code were simplified and changed to better fit a fir
 3. Run the `index.html` file in a browser
 
 No installation is required.
+
+GitHub Repository:
+https://github.com/2025359-oss/Karol
+
+Playable Game:
+https://2025359-oss.github.io/Karol/

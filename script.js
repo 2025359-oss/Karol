@@ -7,7 +7,7 @@ const restartBtn = document.getElementById("restartBtn");
 
 const rows = 10;
 const cols = 10;
-const maxMoves = 40;
+const maxMoves = 45;
 
 let playerRow = 0;
 let playerCol = 0;
@@ -16,21 +16,26 @@ let heartsCollected = 0;
 let gameOver = false;
 
 const maze = [
-  ["E", "", "H", "", "W", ""],
-  ["", "W", "", "", "", ""],
-  ["", "", "W", "H", "", ""],
-  ["H", "", "", "W", "", ""],
-  ["", "", "", "", "H", ""],
-  ["W", "", "", "", "", "X"]
+  ["E", "", "W", "H", "", "", "W", "", "H", ""],
+  ["", "", "W", "", "W", "", "", "", "W", ""],
+  ["W", "", "", "", "W", "", "W", "", "", ""],
+  ["H", "W", "W", "", "", "", "W", "H", "W", ""],
+  ["", "", "", "W", "H", "", "", "", "W", ""],
+  ["", "W", "", "", "W", "W", "", "W", "", ""],
+  ["", "W", "H", "", "", "", "", "W", "", "W"],
+  ["", "", "W", "W", "", "W", "", "", "H", ""],
+  ["W", "", "", "", "", "W", "H", "W", "", ""],
+  ["", "", "W", "H", "", "", "", "", "", "X"]
 ];
 
-let totalHearts = 4;
+let totalHearts = 7;
 
 function drawBoard() {
   board.innerHTML = "";
 
   for (let r = 0; r < rows; r++) {
     let rowDiv = document.createElement("div");
+
     rowDiv.className = "row";
 
     if (r % 2 === 1) {
@@ -39,6 +44,7 @@ function drawBoard() {
 
     for (let c = 0; c < cols; c++) {
       let hex = document.createElement("div");
+
       hex.className = "hex";
 
       if (maze[r][c] === "W") {
@@ -100,17 +106,20 @@ function moveMonster(r, c) {
 
   playerRow = r;
   playerCol = c;
+
   movesLeft--;
 
   if (maze[r][c] === "H") {
     heartsCollected++;
     maze[r][c] = "";
+
     message.textContent = "Heart collected!";
   } else {
     message.textContent = "Monster moved";
   }
 
   checkGame();
+
   drawBoard();
 }
 
@@ -152,6 +161,7 @@ function isNextToPlayer(r, c) {
 function checkGame() {
   if (maze[playerRow][playerCol] === "X" && heartsCollected === totalHearts) {
     message.textContent = "You got all hearts and escaped!";
+
     gameOver = true;
   }
 
@@ -161,6 +171,7 @@ function checkGame() {
 
   if (movesLeft <= 0 && gameOver === false) {
     message.textContent = "No moves left. Game over!";
+
     gameOver = true;
   }
 }

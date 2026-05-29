@@ -1,5 +1,5 @@
 body {
-  background-color: #7ec8e3; /* sky / beach background */
+  background-color: #15bd7a; /* sky / beach background */
   color: #003049;
 }
 
@@ -46,6 +46,10 @@ button:hover {
 }
 
 .hex {
+  background-color: #f2d16b; /* sand tiles */
+}
+
+.hex {
   width: 90px;
   height: 52px;
   background-color: #5b5b5b;
@@ -61,34 +65,34 @@ button:hover {
 }
 
 .hex:hover {
-  background-color: #888;
+  background-color: #ffd98e; /* lighter sand */
 }
 
 .hex.wall {
-  background-color: #2e7d32;
+  background-color: #2f8f46; /* jungle / palm obstacle */
   cursor: not-allowed;
 }
 
 .hex.wall:hover {
-  background-color: hsl(0, 2%, 25%);
+  background-color: #256f38;
 }
 
 .hex.entrance {
-  background-color: #267326;
+  background-color: #00a8cc; /* sea entrance */
 }
 
 .hex.exit {
-  background-color: #8b2bb8;
+  background-color: #ffb703; /* sunny exit / treasure */
 }
 
 .hex.possible-move {
-  background-color: #64accd;
+  background-color: #48cae4; /* shallow water path */
 }
 
 .hex.player {
-  background-color: #460700;
+  background-color: #6a040f; /* monster dark red */
 }
 
 .hex.heart {
-  background-color: #d61818;
+  background-color: #ff595e; /* heart / magic item */
 }

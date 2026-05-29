@@ -1,9 +1,6 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #222;
-  color: white;
-  text-align: center;
+  background-color: #7ec8e3; /* sky / beach background */
+  color: #003049;
 }
 
 main {
@@ -17,10 +14,8 @@ h1 {
 }
 
 .game-info {
-  background-color: #333;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  background-color: #ffe8a3; /* sand panel */
+  color: #003049;
 }
 
 button {
